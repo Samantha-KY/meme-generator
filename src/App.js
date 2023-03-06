@@ -6,7 +6,8 @@ import logo from "./logo.svg";
 
 const URL = "https://api.imgflip.com/get_memes";
 
-export default function App() {
+const App = () => {
+  const imgRef = useRef();
   const [meme, setMeme] = useState({
     shutup: "",
     takeMoney: "",
@@ -20,7 +21,6 @@ export default function App() {
     const value = e.target.value;
     setMeme({ ...meme, [name]: value });
   };
-  const imgRef = useRef();
   const showImages = () => {
     const randomImage = Math.floor(Math.random() * allMemes.length);
     const { url } = allMemes[randomImage];
@@ -81,7 +81,7 @@ export default function App() {
         >
           Get a new meme image 🖼
         </button>
-        <div className="relative" ref={imgRef}>
+        <div className="relative flex items-center justify-center" ref={imgRef}>
           <Draggable bounds="parent">
             <span className="absolute cursor-pointer text-center -translate-x-1/2 mt-[15px] uppercase top-0 text-white font-bold text-4xl">
               {meme.shutup}
@@ -108,3 +108,4 @@ export default function App() {
     </div>
   );
 }
+export default App;
